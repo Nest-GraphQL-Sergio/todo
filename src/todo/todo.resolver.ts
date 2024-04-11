@@ -19,8 +19,7 @@ export class TodoResolver {
 
   @Mutation(() => Todo, { name: 'createTodo' })
   createTodo(@Args('createTodoInput') createTodoInput: CreateTodoInput): Todo {
-    console.log({ createTodoInput });
-    return null;
+    return this.todoService.createTodo(createTodoInput);
   }
 
   updateTodo(id: number): Todo {
