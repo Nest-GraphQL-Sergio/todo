@@ -11,12 +11,25 @@ import { StatusArgs } from './dto/args/status.args';
 export class TodoService {
   private todos: Todo[] = [
     { id: 1, description: 'Tarea 1', done: false },
-    { id: 2, description: 'Tarea 2', done: false },
+    { id: 2, description: 'Tarea 2', done: true },
     { id: 3, description: 'Tarea 3', done: false },
-    { id: 4, description: 'Tarea 4', done: false },
-    { id: 5, description: 'Tarea 5', done: false },
+    { id: 4, description: 'Tarea 4', done: true },
+    { id: 5, description: 'Tarea 5', done: true },
     { id: 6, description: 'Tarea 6', done: false },
+    { id: 7, description: 'Tarea 7', done: false },
   ];
+
+  get totalTodos(): number {
+    return this.todos.length;
+  }
+
+  get completedTodos(): number {
+    return this.todos.filter((todo) => todo.done).length;
+  }
+
+  get pendingTodos(): number {
+    return this.todos.filter((todo) => !todo.done).length;
+  }
 
   findAll(statusArgs: StatusArgs): Todo[] {
     const { status } = statusArgs;
